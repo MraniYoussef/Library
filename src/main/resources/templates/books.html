@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template1">
+<head>
+<meta charset="utf-8"/>
+<title>Books</title>
+</head>
+<body>
+	<div layout:fragment="content" class="container">
+	<div class="panel panel-default">
+			<div class="panel-heading">List of books</div>
+			<div class="panel-body">
+		<table class="table table-striped">
+			<tr>
+				<th>Id</th> <th>Author</th> <th>Title</th> <th>Type</th> <th>Number copies</th> <th>Number books available</th>
+			</tr>
+			<tr th:each="b:${listBooks}">
+				<td th:text="${b.idBook}"></td>
+				<td th:text="${b.author}"></td>
+				<td th:text="${b.title}"></td>
+				<td th:text="${b.type}"></td>
+				<td th:text="${b.numberCopies}"></td>
+				<td th:text="${b.numberBooksAvailable}"></td>
+			</tr>
+		</table>
+		</div>
+		<div>
+			<ul class="nav nav-pills">
+				<li th:class="${status.index}==${currentPage}?'active':''" th:each="p,status:${pages}">
+					<a th:href="@{/books(page=${status.index}, motCle=${motCle})}" th:text="${status.index}"></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	</div>
+</body>
+</html>
