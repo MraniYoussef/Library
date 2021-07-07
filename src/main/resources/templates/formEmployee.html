@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template1">
+<head>
+<meta charset="utf-8"/>
+<title>Employee</title>
+</head>
+<body>
+	
+	<div layout:fragment="content" class="container">
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">add employee</div>
+				<div class="panel-body">
+				<form th:action="@{saveEmployee}" method="post">
+					<div class="form-group">
+						<label class="control-label">First name</label>
+						<input class="form-control" type="text" name="firstName" th:value="${employee.firstName}"/>
+						<span class="text-danger" th:errors="${employee.firstName}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Last name</label>
+						<input class="form-control" type="text" name="lastName" 
+						th:value="${employee.lastName}"/>						
+						<span class="text-danger" th:errors="${employee.lastName}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Password</label>
+						<input class="form-control" type="text" name="password" 
+						th:value="${employee.password}"/>
+						<span class="text-danger" th:errors="${employee.password}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">CIN</label>
+						<input class="form-control" type="text" name="cin" 
+						th:value="${employee.cin}"/>
+						<span class="text-danger" th:errors="${employee.cin}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Email</label>
+						<input class="form-control" type="text" name="email" 
+						th:value="${employee.email}"/>
+						<span class="text-danger" th:errors="${employee.email}"></span>
+					</div>
+					
+					
+					<button class="btn btn-primary">Save</button>
+				</form>
+			</div>
+			
+			</div>
+		</div>
+	</div>
+</body>
+</html>

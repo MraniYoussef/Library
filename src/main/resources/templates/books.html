@@ -9,8 +9,16 @@
 <body>
 	<div layout:fragment="content" class="container">
 	<div class="panel panel-default">
-			<div class="panel-heading">List of books</div>
+			<div class="panel-heading">List of books
+			<li><a th:href="@{/formBook}">Add new book</a></li></div>
 			<div class="panel-body">
+			<div th:class="container">
+					<form th:action="@{/books}" th:method="get">
+						<label>keyword</label>
+						<input type="text" name="motCle"  />
+						<button type="submit" class="primary btn-primary">Search</button>
+					</form>
+				</div>
 		<table class="table table-striped">
 			<tr>
 				<th>Id</th> <th>Author</th> <th>Title</th> <th>Type</th> <th>Number copies</th> <th>Number books available</th>

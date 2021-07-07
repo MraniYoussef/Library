@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template1">
+<head>
+<meta charset="utf-8"/>
+<title>Members</title>
+</head>
+<body>
+	<div layout:fragment="content" class="container">
+	<div class="panel panel-default">
+			<div class="panel-heading">List of members
+			<li><a th:href="@{/formMember}">Add new member</a></li></div>
+			<div class="panel-body">
+			<div th:class="container">
+					<form th:action="@{/members}" th:method="get">
+						<label>keyword</label>
+						<input type="text" name="motCle"  />
+						<button type="submit" class="primary btn-primary">Search</button>
+					</form>
+				</div>
+		<table class="table table-striped">
+			
+				<tr>
+					<th>Id</th> <th>First name</th> <th>Last name</th> <th>CIN</th> <th>Email</th>Type<th>
+				</tr>
+				<tr th:each="m:${listMembers}" th:if="${m.class.simpleName=='Member'}" > 
+					<td th:text="${m.idUser}"></td>
+					<td th:text="${m.firstName}"></td>
+					<td th:text="${m.lastName}"></td>
+					<td th:text="${m.cin}"></td>
+					<td th:text="${m.email}"></td>
+					<td th:text="${m.class.simpleName}"></td>
+					<!-- <td th:text="${m.Member.address}"></td> 
+					<td th:text="${m.dateOfMembership}"></td>
+					<td th:text="${m.function}"></td>
+					<td th:text="${m.subscription.idSubscription}"></td>-->
+				
+			
+		</table>
+		
+		</div>
+		<div>
+			<ul class="nav nav-pills">
+				<li th:class="${status.index}==${currentPage}?'active':''" th:each="p,status:${pages}">
+					<a th:href="@{/members(page=${status.index}, motCle=${motCle})}" th:text="${status.index}"></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

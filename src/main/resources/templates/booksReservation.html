@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template1">
+<head>
+<meta charset="utf-8"/>
+<title>BooksReservation</title>
+</head>
+<body>
+	<div layout:fragment="content" class="container">
+	<div class="panel panel-default">
+			<div class="panel-heading">List of list of reserved books
+			<li><a th:href="@{/formBookReservation}">reserve a book</a></li></div>
+			<div class="panel-body">
+			<div th:class="container">
+					<form th:action="@{/booksReservation}" th:method="get">
+						<label>keyword</label>
+						<input type="text" name="motCle"  />
+						<button type="submit" class="primary btn-primary">Search</button>
+					</form>
+				</div>
+		<table class="table table-striped">
+			<tr>
+				<th>Id</th> <th>Member</th> <th>Date Reservation</th> <th>Status</th> <th>Date Termination </th> <th>Id book</th><th>Title book</th>
+			</tr>
+			<tr th:each="br:${listBooksReservation}">
+				<td th:text="${br.idBookReservation}"></td>
+				<td th:text="${br.member.firstName}"></td>
+				<td th:text="${br.dateReservation}"></td>
+				<td th:text="${br.status}"></td>
+				<td th:text="${br.dateTermination}"></td>
+				<td th:text="${br.book.idBook}"></td>
+				<td th:text="${br.book.title}"></td>
+			</tr>
+		</table>
+		</div>
+		<div>
+			<ul class="nav nav-pills">
+				<li th:class="${status.index}==${currentPage}?'active':''" th:each="p,status:${pages}">
+					<a th:href="@{/booksReservation(page=${status.index}, motCle=${motCle})}" th:text="${status.index}"></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

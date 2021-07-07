@@ -4,11 +4,12 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.sid.enumclass.BookType;
 
@@ -16,10 +17,16 @@ import org.sid.enumclass.BookType;
 public class Book implements Serializable {
 	@Id @GeneratedValue
 	private Long idBook;
+	@NotNull
+	@Size(min=2,max=20)
 	private String author;
+	@com.sun.istack.NotNull
 	private String title;
+	
 	private BookType type;
+	
 	private int numberCopies;
+	
 	private int numberBooksAvailable;
 	@OneToMany
 	@JoinColumn(name="Id_BookRes")

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template1">
+<head>
+<meta charset="utf-8"/>
+<title>Employees</title>
+</head>
+<body>
+	<div layout:fragment="content" class="container">
+	<div class="panel panel-default">
+			<div class="panel-heading">List of members
+			<li><a th:href="@{/formEmployee}">Add new employee</a></li></div>
+			<div class="panel-body">
+			<div th:class="container">
+					<form th:action="@{/employees}" th:method="get">
+						<label>keyword</label>
+						<input type="text" name="motCle"  />
+						<button type="submit" class="primary btn-primary">Search</button>
+					</form>
+				</div>
+		<table class="table table-striped">
+			
+				<tr>
+					<th>Id</th> <th>First name</th> <th>Last name</th> <th>CIN</th> <th>Email</th>Type<th>
+				</tr>
+				
+				<tr th:each="e:${listEmployees}" th:if="${e.class.simpleName=='Employee'}" > 
+					<td th:text="${e.idUser}"></td>
+					<td th:text="${e.firstName}"></td>
+					<td th:text="${e.lastName}"></td>
+					<td th:text="${e.cin}"></td>
+					<td th:text="${e.email}"></td>
+					<td th:text="${e.class.simpleName}"></td>
+					
+				</tr>
+			
+		</table>
+		
+		</div>
+		<div>
+			<ul class="nav nav-pills">
+				<li th:class="${status.index}==${currentPage}?'active':''" th:each="p,status:${pages}">
+					<a th:href="@{/employees(page=${status.index}, motCle=${motCle})}" th:text="${status.index}"></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

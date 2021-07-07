@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template1">
+<head>
+<meta charset="utf-8"/>
+<title>Subscription</title>
+</head>
+<body>
+	
+	<div layout:fragment="content" class="container">
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">add a subscription</div>
+				<div class="panel-body">
+				<form th:action="@{saveSubscription}" method="post">
+					<div class="form-group">
+						<label class="control-label">Member</label>
+						<input class="form-control" type="text" name="member" th:value="${subscription.member}"/>
+						<span class="text-danger" th:errors="${subscription.member}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">BlockageDaysPeriod</label>
+						<input class="form-control" type="text" name="BlockageDaysPeriod" 
+						th:value="${subscription.BlockageDaysPeriod}"/>						
+						<span class="text-danger" th:errors="${subscription.BlockageDaysPeriod}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Situation</label>
+						<input class="form-control" type="text" name="isBlocked" 
+						th:value="${subscription.isBlocked}"/>
+						<span class="text-danger" th:errors="${subscription.isBlocked}"></span>
+					</div>
+					
+					<button class="btn btn-primary">Save</button>
+				</form>
+			</div>
+			
+			</div>
+		</div>
+	</div>
+</body>
+</html>
